@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.hyper.exception.BoardNotFoundException;
+import com.kh.hyper.exception.EnoughBoardContentException;
 import com.kh.hyper.exception.NotMatchLengthException;
 import com.kh.hyper.exception.PasswordNotAccordException;
 import com.kh.hyper.exception.UserFoundException;
@@ -86,6 +87,11 @@ public class ExceptionhandlingController {
 	@ExceptionHandler(BoardNotFoundException.class)
 	protected ModelAndView NoSuchBoardError(BoardNotFoundException e) {
 		return createErrorResponse("존재하는 게시글이 없음", e);
+	}
+	
+	@ExceptionHandler(EnoughBoardContentException.class)
+	protected ModelAndView boardNotValue(EnoughBoardContentException e) {
+		return createErrorResponse("필수 입력 구역이 비어있음", e);
 	}
 	
 }

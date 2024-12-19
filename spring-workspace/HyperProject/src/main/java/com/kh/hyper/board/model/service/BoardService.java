@@ -2,6 +2,8 @@ package com.kh.hyper.board.model.service;
 
 import java.util.Map;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.kh.hyper.board.model.vo.Board;
 
 public interface BoardService {
@@ -10,7 +12,7 @@ public interface BoardService {
 	
 	Board selectById(Long boardNo);
 	
-	void insertBoard(Board board);
+	void insertBoard(Board board, MultipartFile upfile);
 	
 	void updateBoard(Board board);
 	

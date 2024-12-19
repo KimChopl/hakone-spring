@@ -43,6 +43,12 @@
 	 	@Mapping 사용하기 위한 과정
 	 -->
  	<mybatis-spring:scan base-package="com.kh.hyper.member.model.dao, com.kh.hyper.board.model.dao"/>
+ 	
+ 	<!--  File Upload Bean Regist -->
+ 	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+ 		<property name="maxUploadSize" value="10000000" />
+ 		<property name="maxInMemorySize" value="1000000" />
+ 	</bean>
 	 
 	 
 </beans>

@@ -53,7 +53,7 @@
             <br>
             <c:if test="${ not empty sessionScope.loginUser }">
             <!-- 로그인 후 상태일 경우만 보여지는 글쓰기 버튼 -->
-            <a class="btn btn-secondary" style="float:right;" href="">글쓰기</a>
+            <a class="btn btn-secondary" style="float:right;" href="insert.board">글쓰기</a>
             </c:if>
             <br>
             <br>
@@ -70,7 +70,7 @@
                 </thead>
                 <tbody>
                 	<c:forEach items="${ boards }" var="board">
-                    <tr>
+                    <tr onclick="detail('${ board.boardNo }')">
                         <td>${ board.boardNo }</td>
                         <td>${ board.boardTitle }</td>
                         <td>${ board.boardWriter }</td>
@@ -89,10 +89,23 @@
                 </tbody>
             </table>
             <br>
+            <script>
+            	function detail(num){
+            		
+            		location.href = `board/\${num}`;
+            	}
+            </script>
 
             <div id="pagingArea">
                 <ul class="pagination">
-                    <li class="page-item disabled"><a class="page-link" href="#">이전</a></li>
+                <c:choose>
+                <c:when test="${ pi.currentPage <= 1 }">
+                    <li class="page-item disabled"><a class="page-link" href="boards?page=${ pi.currentPage - 1 }">이전</a></li>
+                </c:when>
+                <c:otherwise>
+                    <li class="page-item"><a class="page-link" href="boards?page=${ pi.currentPage - 1 }">이전</a></li>
+                </c:otherwise>
+                </c:choose>
                     <c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="pi">
                     <li class="page-item"><a class="page-link" href="boards?page=${ pi }">${ pi }</a></li>
                     </c:forEach>

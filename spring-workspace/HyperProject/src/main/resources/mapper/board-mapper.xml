@@ -28,4 +28,28 @@
   		   BY
   		       BOARD_NO DESC
   	</select>
+  	
+  	<insert id="insertBoard" parameterType="board">
+  		INSERT
+  		  INTO
+  		       BOARD
+  		       (
+  		       BOARD_NO,
+  		       BOARD_TITLE,
+  		       BOARD_CONTENT,
+  		       BOARD_WRITER,
+  		       ORIGIN_NAME,
+  		       CHANGE_NAME
+  		       )
+  		VALUES
+  		       (
+  		       SEQ_BNO.NEXTVAL,
+  		       #{boardTitle},
+  		       #{boardContent},
+  		       #{boardWriter},
+  		       #{originName},
+  		       #{changeName}
+  		       )
+  	</insert>
+  	
   </mapper>
