@@ -21,5 +21,5 @@ public interface MemberService {
 	
 	void delete(String userPwd, HttpSession ssn);
 	
-	void aa();
+
 }

@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.hyper.exception.BoardNotFoundException;
 import com.kh.hyper.exception.NotMatchLengthException;
 import com.kh.hyper.exception.PasswordNotAccordException;
 import com.kh.hyper.exception.UserFoundException;
@@ -81,4 +82,10 @@ public class ExceptionhandlingController {
 		log.info("{}", e.getMessage(), e);*/
 		return createErrorResponse("길이가 맞지 않음", e);
 	}
+	
+	@ExceptionHandler(BoardNotFoundException.class)
+	protected ModelAndView NoSuchBoardError(BoardNotFoundException e) {
+		return createErrorResponse("존재하는 게시글이 없음", e);
+	}
+	
 }

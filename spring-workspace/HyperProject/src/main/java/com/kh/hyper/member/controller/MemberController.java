@@ -201,7 +201,6 @@ public class MemberController {
 	
 	@GetMapping("myPage.me")
 	public String myPage() {
-		ms.aa();
 		return "member/my_page";
 	}
 	

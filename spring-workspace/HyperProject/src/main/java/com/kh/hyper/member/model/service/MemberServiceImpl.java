@@ -127,9 +127,7 @@ public class MemberServiceImpl implements MemberService {
 		mp.delete(userInfo);
 	}
 	
-	public void aa() {
-		System.out.println(mp.aa());
-	}
+
 	
 
 }

@@ -19,5 +19,5 @@ public interface MemberMapper {
 	
 	int test();
 	
-	List<Member> aa();
+
 }

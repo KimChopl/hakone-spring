@@ -42,7 +42,7 @@
 	 <!--  
 	 	@Mapping 사용하기 위한 과정
 	 -->
- 	<mybatis-spring:scan base-package="com.kh.hyper.member.model.dao"/>
+ 	<mybatis-spring:scan base-package="com.kh.hyper.member.model.dao, com.kh.hyper.board.model.dao"/>
 	 
 	 
 </beans>
