@@ -27,6 +27,7 @@ public class BoardController {
 	private final BoardService bs;
 	private final ModelAndViewUtil mv;
 	
+	
 	@GetMapping("boards")
 	public ModelAndView selectBoardList(@RequestParam(value="page", defaultValue="1") int page) {
 		Map<String, Object> map = bs.selectBoardList(page);
