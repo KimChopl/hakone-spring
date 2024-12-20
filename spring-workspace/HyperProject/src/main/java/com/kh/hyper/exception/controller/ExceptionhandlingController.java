@@ -5,8 +5,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.hyper.exception.BoardDeleteException;
 import com.kh.hyper.exception.BoardNotFoundException;
 import com.kh.hyper.exception.EnoughBoardContentException;
+import com.kh.hyper.exception.FailToFileUploadException;
 import com.kh.hyper.exception.NotMatchLengthException;
 import com.kh.hyper.exception.PasswordNotAccordException;
 import com.kh.hyper.exception.UserFoundException;
@@ -92,6 +94,16 @@ public class ExceptionhandlingController {
 	@ExceptionHandler(EnoughBoardContentException.class)
 	protected ModelAndView boardNotValue(EnoughBoardContentException e) {
 		return createErrorResponse("필수 입력 구역이 비어있음", e);
+	}
+	
+	@ExceptionHandler(FailToFileUploadException.class)
+	protected ModelAndView failUploadFile(FailToFileUploadException e) {
+		return createErrorResponse("업로드 할 수 없는 파일", e);
+	}
+	
+	@ExceptionHandler(BoardDeleteException.class)
+	protected ModelAndView deleteBoard(BoardDeleteException e) {
+		return createErrorResponse("삭제된 게시글", e);
 	}
 	
 }

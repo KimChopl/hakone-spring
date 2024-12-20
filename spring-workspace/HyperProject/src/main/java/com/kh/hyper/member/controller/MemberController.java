@@ -1,6 +1,7 @@
 package com.kh.hyper.member.controller;
 
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -141,7 +142,7 @@ public class MemberController {
 	 */
 	
 	@PostMapping("login.me")
-	public ModelAndView login(Member m, HttpSession hs) {
+	public ModelAndView login(Member m, HttpSession hs, HttpServletRequest request) {
 	
 		
 		
@@ -159,9 +160,6 @@ public class MemberController {
 		hs.setAttribute("loginUser", loginUser);
 		//mv.setViewName("redirect:/");
 		return mv.setViewNameAndData("redirect:/", null);
-		
-		
-		
 	}
 	
 	@GetMapping("logout.me")

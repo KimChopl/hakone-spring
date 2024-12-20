@@ -19,8 +19,10 @@ import com.kh.hyper.board.model.service.BoardService;
 import com.kh.hyper.board.model.vo.Board;
 import com.kh.hyper.common.model.vo.PageInfo;
 import com.kh.hyper.common.template.Pagination;
+import com.kh.hyper.exception.BoardDeleteException;
 import com.kh.hyper.exception.BoardNotFoundException;
 import com.kh.hyper.exception.EnoughBoardContentException;
+import com.kh.hyper.exception.FailToFileUploadException;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -77,7 +79,7 @@ public class BoardServiceImpl implements BoardService {
 		 * 
 		 */
 		//String boardTitle = board.getBoardTitle().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("&", "&amp;");
-		return value.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("&", "&amp;");
+		return value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");//.replaceAll("&", "&amp;");
 	}
 	
 	private String changeCrlf(String value) {
@@ -99,10 +101,35 @@ public class BoardServiceImpl implements BoardService {
 			try {
 				upfile.transferTo(new File(savePath + changeName));
 			} catch (IllegalStateException | IOException e) {
-				e.printStackTrace();
+				throw new FailToFileUploadException("잘못된 파일");
 			}
 			board.setOriginName(originName);
-			board.setChangeName("reources/upload_files/" + changeName);
+			board.setChangeName("resources/upload_files/" + changeName);
+		}
+	}
+	
+	private void checkCurrentPage(int currentPage, PageInfo pi) {
+		if(currentPage > pi.getMaxPage() || currentPage < 1) {
+			throw new BoardNotFoundException("장난질 침");
+		}
+	}
+	
+	private void checkBoardNo(Long boardNo) {
+		if(boardNo < 1) {
+			throw new BoardNotFoundException("게시글 없음");
+		}
+	}
+	
+	private void boardCountUp(Long boardNo) {
+		int result = mp.countUp(boardNo);
+		if(result < 1) {
+			throw new BoardNotFoundException("게시글 없어짐");
+		}
+	}
+	
+	private void checkDelete(Board board) {
+		if(board == null) {
+			throw new BoardDeleteException("삭제된 게시글");
 		}
 	}
 
@@ -117,6 +144,8 @@ public class BoardServiceImpl implements BoardService {
 		
 		PageInfo pi = getPageInfo(totalCount, currentPage);
 		
+		//log.info("{}", pi);
+		checkCurrentPage(currentPage, pi);
 		//int offset = (pi.getCurrentPage() - 1) * pi.getBaordLimit();
 		//RowBounds rb = new RowBounds(offset, pi.getBaordLimit());
 		//List<Board> list = mp.selectBoardList(rb);
@@ -129,12 +158,13 @@ public class BoardServiceImpl implements BoardService {
 		return map;
 	}
 	
-
 	
 	@Override
 	public void insertBoard(Board board, MultipartFile upfile) {
 		checkContent(board);
 		checkImage(board, upfile);
+		
+		
 		Board changeBoard = setChangeBoard(board);
 		/*
 		String originName = upfile.getOriginalFilename();
@@ -165,19 +195,55 @@ public class BoardServiceImpl implements BoardService {
 		mp.insertBoard(changeBoard);
 	}
 
+	
 	@Override
-	public Board selectById(Long boardNo) {
-		return null;
+	public Map<String, Object> selectById(Long boardNo) {
+		checkBoardNo(boardNo);
+		boardCountUp(boardNo);
+		Board board = mp.selectDetailBoard(boardNo);
+		//log.info("{}", board);
+		checkDelete(board);
+		Map<String, Object> map = new HashMap();
+		map.put("board", board);
+		return map;
 	}
 
 	@Override
-	public void updateBoard(Board board) {
-
+	public void updateBoard(Board board, MultipartFile upfile) {
+		Board beforeBoard = mp.selectDetailBoard(board.getBoardNo());
+		if(beforeBoard.getChangeName() != null) {
+			deleteImage(beforeBoard.getChangeName());
+		}
+		checkImage(board, upfile);
+		Board afterBoard = setChangeBoard(board);
+		int result = mp.updateBoard(afterBoard);
+		if(result < 1) {
+			throw new BoardDeleteException("수정 실패");
+		}
 	}
-
+	
+	private void checkingDelete(Long boardNo) {
+		if(mp.deleteBoard(boardNo) <= 0 ) {
+			throw new BoardDeleteException("삭제 실패");
+		}
+	}
+	private void deleteImage(String changeName) {
+		if(!("".equals(changeName))) {
+			try {
+				log.info("{}", new File (context.getRealPath(changeName)));
+				new File(context.getRealPath(changeName)).delete();
+			} catch(RuntimeException e){
+				throw new BoardDeleteException("사진 삭제 실패");
+			}
+		} 
+	}
 	@Override
-	public void deleteBoard(Long boardNo) {
-
+	public void deleteBoard(Long boardNo, String changeName) {
+		Board board = new Board();
+		board.setBoardNo(boardNo);
+		checkDelete(board);
+		checkingDelete(boardNo);
+		deleteImage(changeName);
 	}
 
 

@@ -10,12 +10,13 @@ public interface BoardService {
 	
 	Map<String, Object> selectBoardList(int currentPage);
 	
-	Board selectById(Long boardNo);
+	Map<String, Object> selectById(Long boardNo);
 	
 	void insertBoard(Board board, MultipartFile upfile);
 	
-	void updateBoard(Board board);
+	void updateBoard(Board board, MultipartFile upfile);
 	
-	void deleteBoard(Long boardNo);
+	void deleteBoard(Long boardNo, String changeName);
+	
 
 }

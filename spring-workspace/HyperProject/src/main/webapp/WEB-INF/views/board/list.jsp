@@ -92,7 +92,7 @@
             <script>
             	function detail(num){
             		
-            		location.href = `board/\${num}`;
+            		location.href = `/hyper/boards/\${num}`;
             	}
             </script>
 
@@ -109,7 +109,14 @@
                     <c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="pi">
                     <li class="page-item"><a class="page-link" href="boards?page=${ pi }">${ pi }</a></li>
                     </c:forEach>
-                    <li class="page-item"><a class="page-link" href="#">다음</a></li>
+                    <c:choose>
+                    <c:when test="${ pi.currentPage >= pi.maxPage }">
+                    <li class="page-item disabled" ><a class="page-link" href="boards?page=${ pi.currentPage + 1 }">다음</a></li>                    
+                    </c:when>
+                    <c:otherwise>
+                    <li class="page-item"><a class="page-link" href="boards?page=${ pi.currentPage + 1 }">다음</a></li>
+                    </c:otherwise>
+                    </c:choose>
                 </ul>
             </div>
 

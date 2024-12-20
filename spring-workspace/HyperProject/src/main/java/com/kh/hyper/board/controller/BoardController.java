@@ -39,7 +39,7 @@ public class BoardController {
 		return "board/insert_board";
 	}
 	
-	@PostMapping("boards")
+	@PostMapping("boards")						// 파일 여러개를 받을 때는 MultipartFile[] => 배열로 받으면됨
 	public ModelAndView saveBoard(Board board, MultipartFile upfile, HttpSession ssn) {
 		
 		//String originName = upfile.getOriginalFilename();
@@ -52,10 +52,30 @@ public class BoardController {
 		return mv.setViewNameAndData("redirect:boards", null);
 	}
 	
-	@GetMapping("board/${id}")
-	public ModelAndView selectByIdBoard(@PathVariable(name="id") Long id) {
-		log.info("{}", id);
-		return mv.setViewNameAndData(null, null);
+	@GetMapping("boards/{id}")
+	public ModelAndView selectByIdBoard(@PathVariable(name="id") Long id) { // 요철 uri에서 뒷 부분을 변수로 사용할 떄 사용
+		//log.info("{}", id);
+		Map<String, Object> map = bs.selectById(id);
+		return mv.setViewNameAndData("board/detail", map);
+	}
+	
+	@PostMapping("boards/delete")
+	public ModelAndView deleteBoard(Long boardNo, String changeName) {
+		bs.deleteBoard(boardNo, changeName);
+		return mv.setViewNameAndData("redirect:/boards", null);
+	}
+	
+	@PostMapping("boards/update-form")
+	public ModelAndView updateForm(Long boardNo) {
+		Map<String, Object> map = bs.selectById(boardNo);
+		return mv.setViewNameAndData("board/update", map);
+	}
+	
+	@PostMapping("boards/update")
+	public ModelAndView updateBoard(Board board, MultipartFile upfile) {
+		//log.info("{} : {}", board, upfile);
+		bs.updateBoard(board, upfile);
+		return mv.setViewNameAndData("redirect:/boards", null);
 	}
 	
 }

@@ -14,4 +14,12 @@ public interface BoardMapper {
 	List<Board> selectBoardList(RowBounds rb);
 
 	void insertBoard(Board board);
+
+	int countUp(Long boardNo);
+
+	Board selectDetailBoard(Long boardNo);
+	
+	int deleteBoard(Long boardNo);
+	
+	int updateBoard(Board board);
 }
