@@ -126,6 +126,11 @@ public class MemberServiceImpl implements MemberService {
 		}
 		mp.delete(userInfo);
 	}
+
+	@Override
+	public String checkId(String userId) {
+		return mp.checkId(userId) > 0 ? "NNNNN" : "NNNNY";
+	}
 	
 
 	

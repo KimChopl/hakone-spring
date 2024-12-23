@@ -86,5 +86,14 @@
   		INSERT INTO TB_TEST VALUES(1, '1')
   	</insert>
   	
+  	<select id="checkId" parameterType="string" resultType="_int">
+  		SELECT
+  		       COUNT(*)
+  		  FROM
+  		       MEMBER
+  		 WHERE
+  		       USER_ID = #{userId}
+  	</select>
+  	
   	<select id="aa" resultType="member">SELECT USER_ID userId FROM MEMBER</select>
   </mapper>

@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.kh.hyper.board.model.dao.BoardMapper;
 import com.kh.hyper.board.model.service.BoardService;
 import com.kh.hyper.board.model.vo.Board;
+import com.kh.hyper.board.model.vo.Reply;
 import com.kh.hyper.common.model.vo.PageInfo;
 import com.kh.hyper.common.template.Pagination;
 import com.kh.hyper.exception.BoardDeleteException;
@@ -244,6 +245,17 @@ public class BoardServiceImpl implements BoardService {
 		checkDelete(board);
 		checkingDelete(boardNo);
 		deleteImage(changeName);
+	}
+
+	@Override
+	public int insertReply(Reply reply) {
+		return mp.insertReply(reply);
+	}
+
+
+	@Override
+	public List<Reply> selectReply(Long boardNo) {
+		return mp.selectReply(boardNo);
 	}
 
 

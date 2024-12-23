@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 
 import com.kh.hyper.board.model.vo.Board;
+import com.kh.hyper.board.model.vo.Reply;
 
 @Mapper
 public interface BoardMapper {
@@ -22,4 +23,8 @@ public interface BoardMapper {
 	int deleteBoard(Long boardNo);
 	
 	int updateBoard(Board board);
+
+	int insertReply(Reply reply);
+
+	List<Reply> selectReply(Long boardNo);
 }
