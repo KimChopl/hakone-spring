@@ -16,6 +16,4 @@ public class AjaxForwardController {
 	public String studing() {
 		return "ajax/study";
 	}
-	
-	
 }

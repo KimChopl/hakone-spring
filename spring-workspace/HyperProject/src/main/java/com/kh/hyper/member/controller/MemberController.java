@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.hyper.common.ModelAndViewUtil;
@@ -255,4 +256,14 @@ public class MemberController {
 		return mv;
 	}
 	*/
+	
+	@ResponseBody
+	@GetMapping(value="idcheck", produces="text/html; charset=UTF-8")
+	public String checkId(String userId) {
+		//String result = ms.checkId(userId);
+		//log.info("{}", result);
+		return ms.checkId(userId);
+	}
+	
+	
 }

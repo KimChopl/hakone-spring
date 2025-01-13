@@ -1,5 +1,6 @@
 package com.kh.hyper.board.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -9,11 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.hyper.board.model.service.BoardService;
 import com.kh.hyper.board.model.vo.Board;
+import com.kh.hyper.board.model.vo.Reply;
 import com.kh.hyper.common.ModelAndViewUtil;
 
 import lombok.RequiredArgsConstructor;
@@ -79,4 +82,31 @@ public class BoardController {
 		return mv.setViewNameAndData("redirect:/boards", null);
 	}
 	
+	
+	/*
+	 * SELECT : GET
+	 * INSERT : POST
+	 * UPDATE : PUT
+	 * DELETE : DELETE
+	 * 
+	 */
+	
+	/*
+	@ResponseBody
+	@PostMapping(value="reply")
+	public int ajaxInsertReply(Reply reply) {
+		log.info("{}", reply);
+		return bs.insertReply(reply);
+	}
+	
+	@ResponseBody
+	@GetMapping(value="reply", produces="application/json; charset=UTF-8")
+	public List<Reply> ajaxSelectReply(Long boardNo){
+		return bs.selectReply(boardNo);
+	}
+	*/
+	@GetMapping("map")
+	public String mapForwad() {
+		return "common/map";
+	}
 }

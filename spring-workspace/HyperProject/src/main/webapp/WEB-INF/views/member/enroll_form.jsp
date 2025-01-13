@@ -36,11 +36,49 @@
         <div class="innerOuter">
             <h2>회원가입</h2>
             <br>
-
+			
+			<script>
+				$(function(){
+					
+					const $idInput = $('#enroll-form > #userId');
+					const $checkResult = $('#check-result');
+					const $joinBtn = $('#join-btn');
+					//console.log($idInput);
+					$idInput.keyup(function (){
+						//console.log($idInput.val());
+						if($idInput.val().length > 4){
+							$.ajax({
+								url : 'idcheck',
+								type : 'get',
+								data : {
+									userId : $idInput.val()
+								},
+								success : function(r){
+									//console.log(r);
+									if(r.substr(4) === 'N'){
+										$checkResult.show().css('color', 'crimson').text('사용할 수 없는 아이디.');
+										$joinBtn.attr('disabled', true);
+									} else{
+										$checkResult.show().css('color', 'lightgreen').text('사용가능한 아이디.');
+										$joinBtn.attr('disabled');
+									}
+								}
+								
+							});
+						}else{
+							$checkResult.css('display', 'none');
+						}
+					})
+					
+				})
+			</script>
+			
             <form action="join.me" method="post">
-                <div class="form-group">
+                <div class="form-group" id="enroll-form">
                     <label for="userId">* ID : </label>
                     <input type="text" class="form-control" id="userId" placeholder="Please Enter ID" name="userId" required> <br>
+                    <div id="check-result" style="font-size:0.7em; display:none;"></div>
+                    <br>
 
                     <label for="userPwd">* Password : </label>
                     <input type="password" class="form-control" id="userPwd" placeholder="Please Enter Password" name="userPwd" required> <br>
@@ -71,7 +109,7 @@
                 </div> 
                 <br>
                 <div class="btns" align="center">
-                    <button type="submit" class="btn btn-primary">회원가입</button>
+                    <button type="submit" class="btn btn-primary disabled" id="join-btn">회원가입</button>
                     <button type="reset" class="btn btn-danger">초기화</button>
                 </div>
             </form>
