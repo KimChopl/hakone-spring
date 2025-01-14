@@ -15,6 +15,24 @@ public class OpenDataController {
 		return "horse/horse";
 	}
 	
+	@GetMapping("kin.do")
+	public String kinPage() {
+		return "naver/kin";
+	}
 	
+	@GetMapping("kakao.do")
+	public String kakaoPage() {
+		return "kakao/map";
+	}
+	
+	@GetMapping("busan.do")
+	public String busanPage() {
+		return "busan/busan";
+	}
+	
+	@GetMapping("dictionary")
+	public String dictionary() {
+		return "dictionary/dictionary";
+	}
 
 }
