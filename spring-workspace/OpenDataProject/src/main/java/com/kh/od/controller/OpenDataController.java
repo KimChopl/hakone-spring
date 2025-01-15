@@ -30,7 +30,7 @@ public class OpenDataController {
 		return "busan/busan";
 	}
 	
-	@GetMapping("dictionary")
+	@GetMapping("dictionary.do")
 	public String dictionary() {
 		return "dictionary/dictionary";
 	}

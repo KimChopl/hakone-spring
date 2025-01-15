@@ -15,7 +15,6 @@
 	<input type="text" id="search">
 	<button id="btn" class="btn btn-sm btn-outline-info">검색</button>
 	
-		
 	<script>
 		const btn = document.getElementById('btn');
 		btn.addEventListener('click', function(){
