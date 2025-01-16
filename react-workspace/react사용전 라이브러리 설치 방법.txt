@@ -1,0 +1,20 @@
+1.
+https://nodejs.org/ko/download
+v22.13.0(LTS)버전으로 다운로드
+
+2.
+다운로드 파일 설치 후 재부팅
+
+3.
+VSCode 기준으로 터미널 CMD생성
+npx create-react-app 폴더명
+
+4.
+cd 폴더명 -> react프로젝트 상위 파일 이동
+
+5.
+npm start -> 서버 가동
+
+에러시
+오류 문구에 있는 라이브러리 설치
+npm install 라이브러리 명
