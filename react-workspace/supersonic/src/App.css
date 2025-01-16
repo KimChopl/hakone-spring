@@ -37,7 +37,10 @@
   }
 }
 
-.textareas{
+.textareas {
   width: 120vmin;
   height: 400px;
+}
+.title {
+  color: #61dafb;
 }
