@@ -13,6 +13,7 @@ import Memo from "./components/Chapter/Chapter03/Memo/Memo";
 import { Routes, Route } from "react-router-dom";
 import Chap00 from "./components/Chapter/Chapter00/Chapter00";
 import Navbar from "./components/practies/Navbar/Navbar";
+import Homework from "./components/homework/Homework";
 
 const arr = [
   {
@@ -82,6 +83,7 @@ function App() {
         />
         <Route path="memo" element={<Memo />} />
         <Route path="/*" element={<h1>잘못된 요청</h1>} />
+        <Route path="h" element={<Homework />} />
       </Routes>
       <Footer />
       <br />
@@ -92,3 +94,13 @@ function App() {
 }
 
 export default App; // 내보낼 컴포넌트가 단 하나일 때 사용하는 방법
+
+/*
+  숙제 겸 실습
+  메인 컴포넌트를 하나 만들고  자식 컴포넌트로 각각 입력 모듈, 목록 출력 모듈 
+  메인 컴포넌트에서 입력 및 출력을 할 수 있도록 구현
+
+  조건)
+  img태그를 사용하여 출력이 될 때 이미지도 함께 출력이 되어야함.
+  option -> 능력이 된다면 JS Date를 이용하여 날짜도 함께 출력하기
+*/
