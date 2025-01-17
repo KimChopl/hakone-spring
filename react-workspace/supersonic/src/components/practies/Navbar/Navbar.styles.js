@@ -5,3 +5,8 @@ export const NavberMain = styled.div`
   height: 80px;
   margin: auto;
 `;
+export const HoverUl = styled.ul`
+  &:hover {
+    cursor: pointer;
+  }
+`;
