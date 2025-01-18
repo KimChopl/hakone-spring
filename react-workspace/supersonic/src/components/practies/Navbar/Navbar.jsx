@@ -24,6 +24,9 @@ const Navbar = () => {
           <CCol>
             <HoverUl onClick={() => navi("/memo")}>5</HoverUl>
           </CCol>
+          <CCol>
+            <HoverUl onClick={() => navi("/h")}>Homework</HoverUl>
+          </CCol>
         </CRow>
       </CContainer>
     </NavberMain>
