@@ -14,6 +14,8 @@ import { Routes, Route } from "react-router-dom";
 import Chap00 from "./components/Chapter/Chapter00/Chapter00";
 import Navbar from "./components/practies/Navbar/Navbar";
 import Homework from "./components/homework/Homework";
+import BusanList from "./components/Busan/BusanList/BusanList";
+import BusanDetail from "./components/Busan/BusanDetail/BusanDetail";
 
 const arr = [
   {
@@ -41,7 +43,6 @@ const test = {};
 function App() {
   printNumber();
   printString();
-  const chap00 = false;
 
   /*
     요청 url에 따라서 다른 Component를 보여줄 수 있는 lib
@@ -67,7 +68,8 @@ function App() {
       <Header />
       <Navbar />
       <Routes>
-        <Route path="/" element={<div>메인페이지</div>} />
+        <Route path="/" element={<BusanList />} />
+        <Route path="/foods/:id" element={<BusanDetail />} />
         <Route path="00" element={<Chap00 />} />
         <Route path="01" element={<Chap01 />} />
         <Route path="02" element={<Chap02 />} />

@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <HeaderMainDiv>
       <HeaderSideDiv>
-        <a href="#!" target="_blank">
+        <a href="/" target="_self">
           <HeaderLeftLogo
             src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDA4MjVfMTk5%2FMDAxNzI0NTQyMjY1NDAz.GrefkpKZORX00azBJVuY7hRltbJEdgs9NY0yFuJqZgog.hafbYkYKjLG1Z1ZQOhzIMfy9X-XsaeyxtKeli7sRk3og.PNG%2F20231019%25A3%25DF154645.png&type=a340"
             alt="MainLogo"
