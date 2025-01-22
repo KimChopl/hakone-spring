@@ -12,7 +12,7 @@ const BusanDetail = () => {
   const [submitting, setSubmitting] = useState(true);
   //alert(id);
   useEffect(() => {
-    axios.get(`http://localhost/hyper/busan/${id}`).then((r) => {
+    axios.get(`http://localhost/busan/${id}`).then((r) => {
       // axios로 값을 받게 되면 json형태로 값이 돌아오기 때문에 파싱을 따로 할 필요가 없음.
       const response = r.data.getFoodKr.item[0];
       if (response) {
@@ -44,7 +44,7 @@ const BusanDetail = () => {
     setSubmitting(false); // from테그가 동작한 이후에 설정되기 때문에 글자가 입력되었을 때랑 상관이 없음.
 
     axios
-      .post(`http://localhost/hyper/comments`, {
+      .post(`http://localhost/comments`, {
         foodNo: id,
         content: content,
         writer: writer,

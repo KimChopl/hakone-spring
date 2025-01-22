@@ -26,7 +26,7 @@ public class BusanServiceImpl implements BusanService {
 		StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/6260000/FoodService/getFoodKr"); /*URL*/
 		URI url = null;
         try {
-        	urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=BrWa3Fka63QTF54zG7oxdZGzOn1JAxyLZlksuF5C1GzlZwLBHUz8efmQqtRirC%2Fp%2BI9ftZZshTvS3Npzbmf5Mw%3D%3D"); /*Service Key*/
+        	urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "="); /*Service Key*/
 			urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + page);
 			urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("6", "UTF-8")); /*한 페이지 결과 수*/
 			urlBuilder.append("&" + URLEncoder.encode("resultType","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); /*JSON방식으로 호출 시 파라미터 resultType=json 입력*/
@@ -46,7 +46,7 @@ public class BusanServiceImpl implements BusanService {
 		StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/6260000/FoodService/getFoodKr"); /*URL*/
 		URI url = null;
         try {
-			urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=BrWa3Fka63QTF54zG7oxdZGzOn1JAxyLZlksuF5C1GzlZwLBHUz8efmQqtRirC%2Fp%2BI9ftZZshTvS3Npzbmf5Mw%3D%3D");
+			urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=");
 			urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
 			urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과 수*/
 			urlBuilder.append("&" + URLEncoder.encode("resultType","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); /*JSON방식으로 호출 시 파라미터 resultType=json 입력*/

@@ -5,7 +5,7 @@ const CommentList = (props) => {
   const [comments, setComments] = useState([]);
   const [flag, isFlag] = useState(true);
   useEffect(() => {
-    const requestUrl = `http://localhost/hyper/comments/${id}`;
+    const requestUrl = `http://localhost/comments/${id}`;
     console.log(requestUrl);
     fetch(requestUrl)
       .then((result) => {

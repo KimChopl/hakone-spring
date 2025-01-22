@@ -64,7 +64,7 @@ public class BusanController {
 	@GetMapping("test/test")
 	public void test() throws URISyntaxException, IOException {
 		
-		String url = "https://www.nifs.go.kr/bweb/OpenAPI_json?id=frcenterCode&key=qPwOeIrU-2501-QQLNAD-1023";
+		String url = "https://www.nifs.go.kr/bweb/OpenAPI_json?id=frcenterCode&key=";
 		URI uri = new URI(url);
 		RestTemplate rt = new RestTemplate();
         String response =  rt.getForObject(uri, String.class);

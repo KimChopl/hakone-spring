@@ -79,7 +79,7 @@ const BusanList = () => {
     }).then((result) => console.log(result));
     */
     axios
-      .get(`http://localhost/hyper/busan?page=${page}`)
+      .get(`http://localhost/busan?page=${page}`)
       .then((result) => {
         const response = result.data.getFoodKr.item;
         setFoods([...foods, ...response]);
