@@ -78,13 +78,16 @@ const BusanList = () => {
     method: "get",
     }).then((result) => console.log(result));
     */
-    axios.get(`http://localhost/hyper/busan?page=${page}`).then((result) => {
-      const response = result.data.getFoodKr.item;
-      setFoods([...foods, ...response]);
-      if (response.length < 6) {
-        setHasMore(false);
-      }
-    });
+    axios
+      .get(`http://localhost/hyper/busan?page=${page}`)
+      .then((result) => {
+        const response = result.data.getFoodKr.item;
+        setFoods([...foods, ...response]);
+        if (response.length < 6) {
+          setHasMore(false);
+        }
+      })
+      .catch((err) => alert(`${err.message}\n잠시후 다시 시도해주세요`));
   }, [page]);
 
   const handleMorePage = () => {

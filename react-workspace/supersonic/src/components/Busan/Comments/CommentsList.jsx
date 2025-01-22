@@ -10,7 +10,7 @@ const CommentList = (props) => {
     fetch(requestUrl)
       .then((result) => {
         console.log(result);
-        return result.json();
+        return result.json(); // json으로 파싱해주는 작업 필요 => fetch 사용할 때만
       })
       .then((data) => {
         console.log(data);

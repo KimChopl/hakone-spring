@@ -1,7 +1,12 @@
 package com.kh.hyper.api.controller;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.charset.Charset;
+import java.util.Base64;
+import java.util.Base64.Encoder;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -13,13 +18,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.kh.hyper.api.model.dto.BusanDTO;
 import com.kh.hyper.api.model.service.BusanService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import oracle.jdbc.proxy.annotation.Post;
 
 @RestController
 @RequestMapping(produces="application/json; charset=UTF-8")
@@ -53,8 +58,19 @@ public class BusanController {
 	@GetMapping("/comments/{id}")
 	public ResponseEntity<List<BusanDTO>> getComments(@PathVariable(name="id") Long foodNo){
 		List<BusanDTO> list = bs.getComment(foodNo);
-		log.info("{}", list);
 		return ResponseEntity.ok(list);
+	}
+	
+	@GetMapping("test/test")
+	public void test() throws URISyntaxException, IOException {
+		
+		String url = "https://www.nifs.go.kr/bweb/OpenAPI_json?id=frcenterCode&key=qPwOeIrU-2501-QQLNAD-1023";
+		URI uri = new URI(url);
+		RestTemplate rt = new RestTemplate();
+        String response =  rt.getForObject(uri, String.class);
+        String a = new String(response.getBytes(Charset.forName("ISO-8859-1")), Charset.forName("EUC-KR"));
+        log.info("{}", a);
+        
 	}
 	
 }
