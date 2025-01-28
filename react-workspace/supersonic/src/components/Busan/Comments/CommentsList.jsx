@@ -5,12 +5,12 @@ const CommentList = (props) => {
   const [comments, setComments] = useState([]);
   const [flag, isFlag] = useState(true);
   useEffect(() => {
-    const requestUrl = `http://localhost/hyper/comments/${id}`;
+    const requestUrl = `http://localhost/comments/${id}`;
     console.log(requestUrl);
     fetch(requestUrl)
       .then((result) => {
         console.log(result);
-        return result.json();
+        return result.json(); // json으로 파싱해주는 작업 필요 => fetch 사용할 때만
       })
       .then((data) => {
         console.log(data);

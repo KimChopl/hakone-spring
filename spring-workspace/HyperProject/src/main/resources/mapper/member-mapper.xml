@@ -5,7 +5,7 @@
   <!-- <mapper namespace="memberMapper"> -->
   <mapper namespace="com.kh.hyper.api.model.dao.CommentMapper">
   
-  <select id="getComment" parameterType="Long" resultType="com.kh.hyper.api.model.dto.BusanDTO">
+  <select id="getComment" parameterType="Long" resultType="com.kh.hyper.api.model.dto.CommentDTO">
   	SELECT
   	       UC_SEQ foodNo,
   	       WRITER writer,
