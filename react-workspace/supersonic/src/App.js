@@ -89,6 +89,7 @@ function App() {
       </Routes>
       <Footer />
       <br />
+      <Memo />
       <br />
       <br />
     </div>
