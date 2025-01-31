@@ -5,6 +5,7 @@
   "dependencies": {
     "@coreui/coreui": "^5.2.0",
     "@coreui/react": "^5.4.1",
+    "@portone/browser-sdk": "^0.0.11",
     "axios": "^1.7.9",
     "cra-template": "1.2.0",
     "react": "^19.0.0",

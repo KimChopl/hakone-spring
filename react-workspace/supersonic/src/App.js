@@ -16,6 +16,7 @@ import Navbar from "./components/practies/Navbar/Navbar";
 import Homework from "./components/homework/Homework";
 import BusanList from "./components/Busan/BusanList/BusanList";
 import BusanDetail from "./components/Busan/BusanDetail/BusanDetail";
+import { Test } from "./test copy/test";
 
 const arr = [
   {
@@ -68,7 +69,7 @@ function App() {
       <Header />
       <Navbar />
       <Routes>
-        <Route path="/" element={<BusanList />} />
+        <Route path="/" element={<Test />} />
         <Route path="/foods/:id" element={<BusanDetail />} />
         <Route path="00" element={<Chap00 />} />
         <Route path="01" element={<Chap01 />} />
@@ -107,3 +108,4 @@ export default App; // 내보낼 컴포넌트가 단 하나일 때 사용하는 
   img태그를 사용하여 출력이 될 때 이미지도 함께 출력이 되어야함.
   option -> 능력이 된다면 JS Date를 이용하여 날짜도 함께 출력하기
 */
+
