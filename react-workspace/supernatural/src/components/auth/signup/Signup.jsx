@@ -7,12 +7,14 @@ import {
 } from "./Signup.styles";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [userId, setUserId] = useState("");
   const [userPwd, setUserPwd] = useState("");
   const [idError, setIdError] = useState("");
   const [pwdError, setPwdError] = useState("");
+  const navi = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -23,6 +25,7 @@ const Signup = () => {
       .then((response) => {
         //console.log(response);
         alert(response.data);
+        navi("/signin");
       })
       .catch((error) => {
         console.log(error);

@@ -19,7 +19,7 @@ const Header = () => {
       <Logo>KH 정보교육원 참예쁘다~~</Logo>
       <Nav>
         <NavItem onClick={() => goTo("/")}>홈</NavItem>
-        <NavItem>게시판</NavItem>
+        <NavItem onClick={() => goTo("/boards")}>게시판</NavItem>
         {auth.isAuthenticated ? (
           <>
             <NavItem>{auth.username}님 반갑습니다.</NavItem>

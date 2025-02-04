@@ -2,6 +2,12 @@
   text-align: center;
 }
 
+.bg {
+  background-image: url("https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNTAxMDlfMjA1%2FMDAxNzM2NDA1MTEyODI3.3hf6zuK8l7NqhWPjm5qDK6LMaW2KjPajOUni5SlTWssg.yBJJO_G8kM_xMoMKQC7q7qFP32yAuoow-6XFduWUCCwg.JPEG%2F1209asKakaoTalk_20250109_152322724_12.jpg&type=a340");
+  width: 200px;
+  height: 350px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
